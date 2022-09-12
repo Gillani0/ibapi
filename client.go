@@ -2961,7 +2961,13 @@ func (ic *IbClient) goDecode() {
 	log.Debug("decoder start")
 	defer func() {
 		if errMsg := recover(); errMsg != nil {
-			err := errors.New(errMsg.(string))
+			var err error
+			errString, ok := errMsg.(string)
+			if !ok {
+				err = errors.New("runtime error")
+			} else {
+				err = errors.New(errString)
+			}
 			log.Error("decoder got unexpected error", zap.Error(err))
 			ic.err = err
 			// ic.Disconnect()
