@@ -2972,7 +2972,7 @@ func (ic *IbClient) goDecode() {
 			ic.err = err
 			// ic.Disconnect()
 			log.Debug("try to restart decoder")
-			go ic.goDecode()
+			//	go ic.goDecode()
 		}
 	}()
 	defer log.Debug("decoder end")
