@@ -1003,10 +1003,10 @@ func (d *EDecoder) processHistoricalDataMsg(msgBuf *MsgBuffer) {
 func (d *EDecoder) processHistoricalDataEndMsg(msgBuf *MsgBuffer) {
 
 	msgBuf.decode()
-
-	reqID := msgBuf.decodeInt64()
 	startDateStr := msgBuf.decodeString()
+
 	endDateStr := msgBuf.decodeString()
+	reqID := msgBuf.decodeInt64()
 
 	d.wrapper.HistoricalDataEnd(reqID, startDateStr, endDateStr)
 }
